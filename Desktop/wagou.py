@@ -27,7 +27,7 @@ class Wagou(Frame):
 
     def translate(self):
         found = False
-        if not self.target.get():
+        if not self.target.get() or (self.target.get() and self.source.get()):
             word = self.source.get()
             lang = "en"
         if not self.source.get():
