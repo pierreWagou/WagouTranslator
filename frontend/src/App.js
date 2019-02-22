@@ -28,7 +28,6 @@ class App extends Component {
     }
   }
 
-
   componentDidMount() {
     this.loadDico()
   }
@@ -57,7 +56,7 @@ class App extends Component {
   }
 
   translate() {
-    for (var i=0;i<this.state.dico.length;i++) {
+    for (let i=0;i<this.state.dico.length;i++) {
       if(this.state.dico[i].en===this.state.wordSource && this.emptyTarget) {
         this.setState({wordTarget: this.state.dico[i].wg})
       }
@@ -65,6 +64,8 @@ class App extends Component {
         this.setState({wordSource: this.state.dico[i].en})
       }
     }
+    this.emptySource = false
+    this.emptyTarget = false
   }
 
   render() {
@@ -83,7 +84,7 @@ class App extends Component {
                       name="source"
                       placeholder="English word"
                       onChange={text => this.textInputSourceChanged(text)}
-                      defaultValue={this.state.wordSource}
+                      value={this.state.wordSource}
                       readOnly={this.emptySource}
                     />
                 </FormGroup>
@@ -94,7 +95,7 @@ class App extends Component {
                       name="target"
                       placeholder="Wagou ysuwiwagouhoh"
                       onChange={text => this.textInputTargetChanged(text)}
-                      defaultValue={this.state.wordTarget}
+                      value={this.state.wordTarget}
                       readOnly={this.emptyTarget}
                     />
                 </FormGroup>

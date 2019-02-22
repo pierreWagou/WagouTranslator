@@ -6,7 +6,7 @@ app_key = 'e212e7688071ccd32d2cbf7ef734accc'
 
 source_language = 'en'
 target_language = 'de'
-word_id = 'Ace'
+word_id = 'rabbit'
 
 url = 'https://od-api.oxforddictionaries.com/api/v1/entries/' + source_language + '/' + word_id.lower() + '/translations='+ target_language
 
