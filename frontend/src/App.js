@@ -15,6 +15,20 @@ class App extends Component {
     }
   }
 
+  handleSubmit(item) {
+    axios
+      .post("http://localhost:8000/api/words/", item)
+      .then(res => this.loadDico())
+  }
+
+  buildDico() {
+    const list = []
+    for (var i=0;i<list.length;i++) {
+      this.handleSubmit(list[i])
+    }
+  }
+
+
   componentDidMount() {
     this.loadDico()
   }
