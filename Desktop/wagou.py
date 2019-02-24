@@ -45,9 +45,12 @@ class Wagou(Frame):
                 found = True
                 self.source.delete(0, END)
                 self.source.insert(0, ob["en"])
-                print(ob["en"])
-        if not found:
-            print("Mot inexistant")
+        if not found and lang=="en":
+            self.target.delete(0, END)
+            self.target.insert(0, "pas du tout wagou")
+        if not found and lang=="wg":
+            self.source.delete(0, END)
+            self.source.insert(0, "pas du tout wagou")
 
     def reset(self):
         self.target.delete(0, END)
