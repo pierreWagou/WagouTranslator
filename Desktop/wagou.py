@@ -33,7 +33,7 @@ class Wagou(Frame):
         if not self.source.get():
             word = self.target.get()
             lang = "wg"
-        f = open("translate.json","r")
+        f = open("../translate.json","r")
         data = json.load(f)
         f.close()
         for ob in data:
