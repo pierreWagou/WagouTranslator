@@ -30,7 +30,7 @@ export default class App extends React.Component {
   loadDico() {
     console.log(this.state.dico)
     axios
-      .get("http://127.0.0.1:8000/api/words")
+      .get("http://localhost:8000/api/words")
       .then(res => this.setState({dico: res.data}))
       .catch(err => console.log(err))
     //this.getWordFromApi().then(data => {this.setState({dico: data})})
@@ -84,14 +84,6 @@ export default class App extends React.Component {
           editable={this.emptySource}
           value={this.state.wordSource}
         />
-        <Text>Wagou</Text>
-        <TextInput
-          style={styles.textinput}
-          placeholder="Wagou ysuwiwagouhoh"
-          onChangeText={text => this.textInputTargetChanged(text)}
-          editable={this.emptyTarget}
-          value={this.state.wordTarget}
-        />
         <Button
           style={styles.button}
           title="Translate"
@@ -101,6 +93,14 @@ export default class App extends React.Component {
           style={styles.button}
           title="Reset"
           onPress={() => this.reset()}
+        />
+        <Text>Wagou</Text>
+        <TextInput
+          style={styles.textinput}
+          placeholder="Wagou ysuwiwagouhoh"
+          onChangeText={text => this.textInputTargetChanged(text)}
+          editable={this.emptyTarget}
+          value={this.state.wordTarget}
         />
       </View>
     );
