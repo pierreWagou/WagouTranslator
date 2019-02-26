@@ -23,7 +23,7 @@ class App extends Component {
 
   buildDico() {
     const list = []
-    for (var i=0;i<list.length;i++) {
+    for (let i=0;i<list.length;i++) {
       this.handleSubmit(list[i])
     }
   }
