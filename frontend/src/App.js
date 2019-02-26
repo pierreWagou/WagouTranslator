@@ -34,7 +34,7 @@ class App extends Component {
 
   loadDico() {
     axios
-      .get("http://localhost:8000/api/words")
+      .get("http://localhost:8000/api/words/")
       .then(res => this.setState({dico: res.data}))
       .catch(err => console.log(err))
   }
@@ -56,13 +56,22 @@ class App extends Component {
   }
 
   translate() {
+    let found = false
     for (let i=0;i<this.state.dico.length;i++) {
       if(this.state.dico[i].en===this.state.wordSource && this.emptyTarget) {
         this.setState({wordTarget: this.state.dico[i].wg})
+        found = true
       }
       if(this.state.dico[i].wg===this.state.wordTarget && this.emptySource) {
         this.setState({wordSource: this.state.dico[i].en})
+        found = true
       }
+    }
+    if(!found && this.emptyTarget) {
+      this.setState({wordTarget: "Pas du tout wagou"})
+    }
+    if(!found && this.emptySource) {
+      this.setState({wordSource: "Pas du tout wagou"})
     }
     this.emptySource = false
     this.emptyTarget = false
