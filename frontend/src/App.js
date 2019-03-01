@@ -68,10 +68,10 @@ class App extends Component {
       }
     }
     if(!found && this.emptyTarget) {
-      this.setState({wordTarget: "Pas du tout wagou"})
+      this.setState({wordTarget: this.state.wordSource})
     }
     if(!found && this.emptySource) {
-      this.setState({wordSource: "Pas du tout wagou"})
+      this.setState({wordSource: this.state.wordTarget})
     }
     this.emptySource = false
     this.emptyTarget = false

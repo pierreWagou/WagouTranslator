@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text,TextInput, View, Button } from 'react-native'
 import axios from 'axios'
-//import {getWordFromApi} from './api'
+// import {getWordFromApi} from './api'
 
 export default class App extends React.Component {
 
@@ -20,20 +20,20 @@ export default class App extends React.Component {
     this.loadDico()
   }
 
-  // getWordFromApi() {
-  //   const url = 'http://127.0.0.1:8000/api/words'
-  //   return fetch(url)
-  //     .then((response) => response.json())
-  //     .catch((error) => console.error(error))
-  // }
+// getWordFromApi() {
+//   const url = 'http://localhost:8000/api/words/'
+//   return fetch(url)
+//     .then((response) => response.json())
+//     .catch((error) => console.error(error))
+// }
 
   loadDico() {
     console.log(this.state.dico)
     axios
-      .get("http://localhost:8000/api/words")
-      .then(res => this.setState({dico: res.data}))
+      .get("http://172.25.33.186:8000/api/words/") //172.25.33.186
+      .then(res => console.log("lol")) //this.setState({dico: res.data}))
       .catch(err => console.log(err))
-    //this.getWordFromApi().then(data => {this.setState({dico: data})})
+    // this.getWordFromApi().then(data => {this.setState({dico: data})})
     console.log(this.state.dico)
 
   }
@@ -61,13 +61,22 @@ export default class App extends React.Component {
   }
 
   translate() {
+    let found = false
     for (let i=0;i<this.state.dico.length;i++) {
       if(this.state.dico[i].en===this.state.wordSource && this.emptyTarget) {
         this.setState({wordTarget: this.state.dico[i].wg})
+        found = true
       }
       if(this.state.dico[i].wg===this.state.wordTarget && this.emptySource) {
         this.setState({wordSource: this.state.dico[i].en})
+        found = true
       }
+    }
+    if(!found && !this.emptyTarget) {
+      this.setState({wordTarget: "Pas du tout wagou"})
+    }
+    if(!found && !this.emptySource) {
+      this.setState({wordSource: "Pas du tout wagou"})
     }
     this.emptySource = false
     this.emptyTarget = false
