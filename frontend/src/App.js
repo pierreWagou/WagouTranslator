@@ -28,6 +28,18 @@ class App extends Component {
     }
   }
 
+  handleDelete(item) {
+    axios
+      .delete("http://localhost:8000/api/words/" + item.id + "/")
+      .then(res => this.loadDico())
+  }
+
+  deleteDico () {
+    for (let i=0;i<this.state.dico.length;i++) {
+      this.handleDelete(this.state.dico[i])
+    }
+  }
+
   componentDidMount() {
     this.loadDico()
   }
